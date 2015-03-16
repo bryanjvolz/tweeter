@@ -22,18 +22,30 @@ class ChirpsController < ApplicationController
 
   def create
     @chirp = Chirp.new(chirp_params)
-    @chirp.save
-    respond_with(@chirp)
+    if @chirp.save
+      redirect_to @chirp, notice: 'Chirp was successfully created.'
+    else
+      render :new
+    end
+    #respond_with(@chirp)
   end
 
   def update
     @chirp.update(chirp_params)
-    respond_with(@chirp)
+    if @chirp.save
+      redirect_to @chirp, notice: 'Chirp was successfully updated.'
+    else
+      render :new
+    end
+    # respond_with(@chirp)
   end
 
   def destroy
     @chirp.destroy
-    respond_with(@chirp)
+    if @chip.delete
+      render :index, notice: 'Chirp was successfully deleted.'
+    end
+    #respond_with(@chirp)
   end
 
   private

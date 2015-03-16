@@ -97,16 +97,8 @@ textarea {
 
 
 body {
-    background: rgba(0,0,0,.15);
-}
-
-header {
-    background: $lightblue;
-}
-
-main {
-    background: white;
-    box-shadow: 0 0 1.15em rgba(0,0,0,.15);
+    background: rgba(0,0,0,.15) image-url("tree.jpg") top left no-repeat;
+    background-size: cover;
 }
 
 .wrapper {
@@ -116,16 +108,8 @@ main {
 }
 
 h1 {
-    color: blue;
+    color: $deepblue;
 }
-
-
-
-
-
-
-
-
 
 
 
