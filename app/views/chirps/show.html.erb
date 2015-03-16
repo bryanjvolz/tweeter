@@ -7,7 +7,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @chirp.user_id %>
+  <%= @chirp.user.username %>
 </p>
 
 <%= link_to 'Edit', edit_chirp_path(@chirp) %> |

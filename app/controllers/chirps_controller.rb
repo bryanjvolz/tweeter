@@ -1,5 +1,6 @@
 class ChirpsController < ApplicationController
   before_action :set_chirp, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   respond_to :html
 
@@ -23,7 +24,7 @@ class ChirpsController < ApplicationController
   def create
     @chirp = Chirp.new(chirp_params)
     if @chirp.save
-      redirect_to @chirp, notice: 'Chirp was successfully created.'
+      redirect_to '/', notice: 'Chirp was successfully created.'
     else
       render :new
     end
@@ -42,10 +43,8 @@ class ChirpsController < ApplicationController
 
   def destroy
     @chirp.destroy
-    if @chip.delete
-      render :index, notice: 'Chirp was successfully deleted.'
-    end
-    #respond_with(@chirp)
+    #render :index, notice: 'Chirp was successfully deleted.'
+    respond_with(@chirp)
   end
 
   private
@@ -54,6 +53,6 @@ class ChirpsController < ApplicationController
     end
 
     def chirp_params
-      params.require(:chirp).permit(:body, :user_id)
+      params.require(:chirp).permit(:body).merge(user: current_user)
     end
 end
